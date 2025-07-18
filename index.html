@@ -175,51 +175,6 @@
   <div class="text-center mt-4">
     <button type="submit" class="button button-a button-big button-rouded">Αποστολή Αιτήματος</button>
   </div>
-
-<div id="progressContainer" style="width: 100%; background: #eee; margin-top: 10px; display:none;">
-  <div id="progressBar" style="width: 0%; height: 20px; background: #1abc9c;"></div>
-</div>
-
-<script>
-  const form = document.getElementById('myForm');
-  const progressContainer = document.getElementById('progressContainer');
-  const progressBar = document.getElementById('progressBar');
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Αποτρέπουμε το default submit
-
-    const xhr = new XMLHttpRequest();
-    const formData = new FormData(form);
-
-    xhr.open('POST', 'https://formsubmit.co/codingelevation@gmail.com'); // Βάλε τη σωστή URL
-
-    xhr.upload.addEventListener('progress', (e) => {
-      if (e.lengthComputable) {
-        const percent = (e.loaded / e.total) * 100;
-        progressBar.style.width = percent + '%';
-        progressContainer.style.display = 'block';
-      }
-    });
-
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        alert('Η αποστολή ολοκληρώθηκε!');
-        progressBar.style.width = '0%';
-        progressContainer.style.display = 'none';
-        form.reset();
-      } else {
-        alert('Κάτι πήγε στραβά στην αποστολή.');
-      }
-    };
-
-    xhr.send(formData);
-  });
-</script>
-
-
-
-
-        
 </form>
 
 
