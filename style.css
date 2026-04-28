@@ -684,46 +684,43 @@ html, body {
 
 /* --- Responsive Ρυθμίσεις για Κινητά (Mobile) --- */
 @media (max-width: 768px) {
-    /* Διόρθωση του Μενού */
-    .nav-links {
-        display: none;
-    }
     
-    .glass-nav {
-        justify-content: center;
-        width: 95%; /* Να μην ακουμπάει εντελώς στις άκρες */
-        padding: 1rem;
-    }
+    /* ... (Κράτα τους κανόνες για το μενού και το λογότυπο που βάλαμε πριν) ... */
+    .nav-links { display: none; }
+    .glass-nav { justify-content: center; width: 95%; padding: 1rem; }
+    .static-logo { display: none; }
+    .typewriter-logo { display: inline-block; }
 
-    .static-logo {
-        display: none;
-    }
-    
-    .typewriter-logo {
-        display: inline-block;
-    }
-
-    /* ΔΙΟΡΘΩΣΗ ΓΙΑ ΤΙΣ ΚΑΡΤΕΣ (PROJECTS & SERVICES) ΝΑ ΜΗΝ ΒΓΑΙΝΟΥΝ ΔΕΞΙΑ */
-    .project-grid, 
-    .services-grid {
-        /* Αναγκάζει τις κάρτες να πιάνουν 1 στήλη (100% του διαθέσιμου χώρου) στα κινητά */
-        grid-template-columns: 1fr; 
-        gap: 2rem;
-    }
-
-    /* Μειώνουμε το padding (κενά δεξιά-αριστερά) στα sections για να χωράνε καλύτερα οι κάρτες */
+    /* ΝΕΟ: Απόλυτο κεντράρισμα όλων των ενοτήτων */
     .work-section, 
     .services-section, 
     .faq-section,
     .contact-section {
-        padding: 80px 5%; /* Από 10% το κάναμε 5% στα κινητά για να δώσουμε χώρο */
+        padding: 60px 1rem !important; /* Βάζουμε σταθερό μικρό περιθώριο αντί για ποσοστά */
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Σπρώχνει τα πάντα στο κέντρο */
     }
 
-    /* Σιγουρευόμαστε ότι η κάρτα δεν ξεπερνάει το 100% της οθόνης */
+    /* ΝΕΟ: Μετατροπή του Grid σε ευθυγραμμισμένη στήλη */
+    .project-grid, 
+    .services-grid {
+        display: flex; 
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 2.5rem;
+        padding: 0; /* Μηδενίζουμε τα κρυφά κενά */
+    }
+
+    /* ΝΕΟ: Τέλειο μέγεθος και στοίχιση για την κάθε κάρτα */
     .project-card, 
     .service-card {
         width: 100%;
-        max-width: 100%;
-        margin: 0 auto; /* Απόλυτο κεντράρισμα */
+        max-width: 400px; /* Δεν την αφήνουμε να ξεχειλώσει υπερβολικά */
+        margin: 0 auto !important; /* Κλειδώνει την κάρτα ακριβώς στο κέντρο */
+        box-sizing: border-box;
     }
 }
