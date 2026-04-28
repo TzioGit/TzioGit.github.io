@@ -675,15 +675,55 @@ input:focus, textarea:focus {
     box-shadow: 0 10px 20px rgba(211, 179, 128, 0.15); /* Απαλή χρυσή σκιά */
 }
 
+/* --- Γενικός κανόνας για να "κλειδώσει" το οριζόντιο σκρολ --- */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 /* --- Responsive Ρυθμίσεις για Κινητά (Mobile) --- */
 @media (max-width: 768px) {
-    /* Εξαφανίζει τα links του μενού (Work, Skills, Contact) */
+    /* Διόρθωση του Μενού */
     .nav-links {
         display: none;
     }
     
-    /* Προαιρετικά: Κεντράρει το λογότυπο αφού φύγουν τα links για πιο ωραία συμμετρία */
     .glass-nav {
         justify-content: center;
+        width: 95%; /* Να μην ακουμπάει εντελώς στις άκρες */
+        padding: 1rem;
+    }
+
+    .static-logo {
+        display: none;
+    }
+    
+    .typewriter-logo {
+        display: inline-block;
+    }
+
+    /* ΔΙΟΡΘΩΣΗ ΓΙΑ ΤΙΣ ΚΑΡΤΕΣ (PROJECTS & SERVICES) ΝΑ ΜΗΝ ΒΓΑΙΝΟΥΝ ΔΕΞΙΑ */
+    .project-grid, 
+    .services-grid {
+        /* Αναγκάζει τις κάρτες να πιάνουν 1 στήλη (100% του διαθέσιμου χώρου) στα κινητά */
+        grid-template-columns: 1fr; 
+        gap: 2rem;
+    }
+
+    /* Μειώνουμε το padding (κενά δεξιά-αριστερά) στα sections για να χωράνε καλύτερα οι κάρτες */
+    .work-section, 
+    .services-section, 
+    .faq-section,
+    .contact-section {
+        padding: 80px 5%; /* Από 10% το κάναμε 5% στα κινητά για να δώσουμε χώρο */
+    }
+
+    /* Σιγουρευόμαστε ότι η κάρτα δεν ξεπερνάει το 100% της οθόνης */
+    .project-card, 
+    .service-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto; /* Απόλυτο κεντράρισμα */
     }
 }
