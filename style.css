@@ -1,0 +1,689 @@
+:root {
+    /* Τα νέα σου χρώματα */
+    --bg-color: #1d213c; 
+    --accent-color: #d3b380; 
+    
+    /* Προσαρμοσμένα χρώματα για το εφέ γυαλιού */
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(211, 179, 128, 0.15); /* Ελαφρώς χρωματισμένο με το χρυσό */
+    --font-main: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: #ffffff;
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Nav */
+.glass-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    z-index: 1000;
+}
+
+.logo {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-color);
+    margin-left: 4px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+.accent {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-color);
+    /* 211, 179, 128 είναι το RGB του #d3b380 */
+    text-shadow: 0 0 25px rgba(211, 179, 128, 0.4); 
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 2rem;
+    transition: all 0.4s ease;
+}
+
+.btn-primary:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 30px rgba(211, 179, 128, 0.3);
+}
+
+/* --- Ενότητα Έργα (Work) --- */
+.work-section {
+    padding: 100px 10%;
+    position: relative;
+    background-color: transparent;
+    z-index: 1;
+}
+
+/* --- Ενότητα Έργα (Work) --- */
+.work-section {
+    padding: 100px 10%;
+    position: relative;
+    background-color: transparent;
+    z-index: 1;
+}
+
+/* Το Project Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+/* Η Κάρτα - Τώρα με Glassmorphism & Στρογγυλές Γωνίες */
+.project-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease, border-color 0.4s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+}
+
+/* Το wrapping της εικόνας στην κάρτα */
+.card-image-wrap {
+    width: 100%;
+    height: calc(100% - 90px); /* Αφήνει 90px για το κείμενο στο κάτω μέρος */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Η εικόνα μέσα στην κάρτα */
+.project-card .card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Γεμίζει το χώρο χωρίς να παραμορφώνεται */
+    border-radius: 12px 12px 0 0; /* Στρογγυλεμένες γωνίες μόνο στο πάνω μέρος */
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .card-image-wrap img {
+    transform: scale(1.05); /* Μικρό zoom στο hover */
+}
+
+/* Προσθήκη μιας διακριτικής σκιάς/overlay στο κάτω μέρος της εικόνας */
+.card-image-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+    z-index: 1;
+}
+
+/* Το κείμενο κάτω από την εικόνα */
+.card-info {
+    padding: 20px 25px;
+    height: 90px;
+    background-color: var(--glass-bg); /* Ελαφρώς πιο σκούρο από κάτω */
+    z-index: 2;
+}
+
+.card-info h3 {
+    color: #fff;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .card-info h3 {
+    color: var(--accent-color);
+}
+
+.card-info p {
+    color: #a0a5b5;
+    font-size: 0.9rem;
+}
+
+/* Background Abstract Shapes (3D Feel) */
+.bg-visuals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(90px);
+    opacity: 0.15; /* Χαμήλωσα λίγο το opacity για πιο διακριτικό αποτέλεσμα */
+}
+
+.cube {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-color);
+    top: 10%;
+    right: 10%;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morph 15s infinite alternate;
+}
+
+@keyframes morph {
+    0% { border-radius: 30% 70% 70% 30%; }
+    100% { border-radius: 50%; transform: rotate(45deg); }
+}
+
+/* Contact Form */
+.contact-section {
+    padding: 100px 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+input, textarea {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--accent-color);
+}
+
+/* --- Modal (Popup) Styles --- */
+
+/* Κάνουμε τις κάρτες να δείχνουν ότι είναι clickable */
+.project-card {
+    cursor: pointer;
+}
+
+/* Το background του Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(29, 33, 60, 0.85); /* Το navy χρώμα σου με διαφάνεια */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Animation fade in */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* Εμφάνιση του Modal μέσω κλάσης */
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Το κουτί του Modal */
+.modal-content {
+    background: var(--bg-color);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    
+    /* Animation slide up */
+    transform: translateY(30px);
+    transition: transform 0.4s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Κουμπί κλεισίματος (X) */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-modal:hover {
+    transform: scale(1.2);
+}
+
+.modal-content h2 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.modal-content p {
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+}
+
+/* Στυλ για την εικόνα μέσα στο Modal */
+.modal-img {
+    width: 100%;
+    height: auto;
+    max-height: 280px; /* Περιορίζουμε το ύψος για να μην κρύβει το κείμενο */
+    object-fit: cover; /* Κόβει την εικόνα σωστά χωρίς να την παραμορφώνει */
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--glass-border);
+    display: none; /* Κρύβεται αρχικά, θα την εμφανίσει το JS αν υπάρχει */
+}
+
+/* --- Ενότητα Υπηρεσίες (Προσαρμοσμένη στο νέο Glassmorphism Design) --- */
+.services-section {
+    padding: 100px 10%;
+    background-color: transparent; /* Σκούρο navy φόντο */
+    position: relative;
+    z-index: 1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    color: var(--accent-color); /* Χρυσός τίτλος */
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.section-header p {
+    color: #a0a5b5; /* Απαλό γκρι-μπλε για το κείμενο */
+    font-size: 1.1rem;
+}
+
+/* Το πλέγμα (Grid) για τις κάρτες */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+/* Η κάθε κάρτα - Τώρα με Glassmorphism */
+.service-card {
+    background: var(--glass-bg); /* Ημιδιάφανο σκούρο φόντο */
+    border: 1px solid var(--glass-border); /* Διακριτικό χρυσό/λευκό περίγραμμα */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    transition: all 0.4s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color); /* Το περίγραμμα γίνεται χρυσό στο hover */
+    box-shadow: 0 10px 30px rgba(211, 179, 128, 0.15); /* Απαλή χρυσή λάμψη από κάτω */
+    background: rgba(255, 255, 255, 0.06); /* Ελαφρώς πιο φωτεινό στο hover */
+}
+
+/* Το κυκλικό εικονίδιο */
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background: rgba(211, 179, 128, 0.1); /* Πολύ απαλό διαφανές χρυσό φόντο */
+    border: 1px solid rgba(211, 179, 128, 0.3);
+    border-radius: 12px; /* Αλλάξαμε τον κύκλο σε squircle (τετράγωνο με στρογγυλές γωνίες) για πιο tech αισθητική */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    transition: all 0.4s ease;
+}
+
+.service-card:hover .icon-circle {
+    background: var(--accent-color);
+}
+
+.icon-circle svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--accent-color); /* Χρυσό εικονίδιο */
+    transition: fill 0.4s ease;
+}
+
+.service-card:hover .icon-circle svg {
+    fill: var(--bg-color); /* Το εικονίδιο γίνεται σκούρο όταν το φόντο του γίνεται χρυσό στο hover */
+}
+
+/* Τυπογραφία μέσα στην κάρτα */
+.service-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #ffffff; /* Λευκός τίτλος για να ξεχωρίζει */
+    transition: color 0.3s ease;
+}
+
+.service-card:hover h3 {
+    color: var(--accent-color); /* Ο τίτλος γίνεται χρυσός στο hover */
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 300;
+    color: #d1d4e0; /* Ανοιχτό γκρι για εύκολη ανάγνωση στο σκούρο */
+}
+
+/* --- Ενότητα FAQ (Συχνές Ερωτήσεις) --- */
+.faq-section {
+    padding: 100px 10%;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.faq-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* 1 μέρος αριστερά, 2 μέρη δεξιά */
+    gap: 4rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .faq-container {
+        grid-template-columns: 1fr; /* Στα κινητά/tablet μπαίνουν το ένα κάτω απ' τ' άλλο */
+        gap: 2rem;
+    }
+}
+
+.faq-header h2 {
+    color: #ffffff;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.faq-header .accent-text {
+    color: var(--accent-color); /* Χρυσό χρώμα στη λέξη "Ερωτήσεις" */
+}
+
+.faq-header p {
+    color: #a0a5b5;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Κάθε ερώτηση - Glassmorphism Style */
+.faq-item {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(211, 179, 128, 0.4); /* Ελαφρύ χρυσό στο hover */
+}
+
+.faq-item.active {
+    border-color: var(--accent-color); /* Έντονο χρυσό όταν είναι ανοιχτή η ερώτηση */
+    box-shadow: 0 10px 30px rgba(211, 179, 128, 0.08);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-main);
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: var(--accent-color);
+}
+
+.faq-icon {
+    min-width: 24px;
+    color: var(--accent-color); /* Χρυσό βελάκι */
+    transition: transform 0.4s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg); /* Γυρίζει το βελάκι όταν ανοίγει */
+}
+
+/* Μαγικό CSS για απαλό άνοιγμα της απάντησης */
+.faq-answer-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+}
+
+.faq-item.active .faq-answer-wrapper {
+    grid-template-rows: 1fr;
+}
+
+.faq-answer {
+    overflow: hidden;
+}
+
+.faq-answer p {
+    padding: 0 2rem 1.5rem 2rem;
+    color: #d1d4e0;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Styling για το Logo Watermark πίσω από το Hero --- */
+.bg-logo-watermark {
+    position: absolute;
+    top: 50%; /* Κεντράρισμα */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5); /* Πολύ μεγάλο μέγεθος */
+    width: auto;
+    height: 90vh; /* Καλύπτει σχεδόν όλο το ύψος του hero */
+    
+    /* ΕΞΑΙΡΕΤΙΚΑ ΣΗΜΑΝΤΙΚΟ: Διαφάνεια & Ανάμιξη */
+    opacity: 0.15; /* Μόλις 3% ορατότητα. Πρέπει να είναι μια "ψίθυρος" */
+    
+    /* Διασφαλίζει ότι δεν θα "πιάσει" κλικ του χρήστη αντί για τα κουμπιά */
+    pointer-events: none; 
+    z-index: -1; /* Μέσα στο bg-visuals container, μένει πίσω απ' όλα */
+}
+
+/* Αν θέλεις να φαίνεται ακόμα πιο "ενσωματωμένο", μπορείς να προσθέσεις φίλτρα */
+.bg-logo-watermark {
+    /* ...προηγούμενα styles... */
+    filter: blur(10px) sepia(1) saturate(1) hue-rotate(10deg); /* Δίνει μια πολύ απαλή χρυσή απόχρωση (από το palette μας) και το θολώνει ελαφρώς */
+}
+
+/* Responsive ρύθμιση για κινητά */
+@media (max-width: 768px) {
+    .bg-logo-watermark {
+        height: 60vh; /* Λίγο μικρότερο σε κινητά */
+        opacity: 0.10; /* Ακόμα πιο αχνό γιατί οι οθόνες είναι μικρότερες */
+    }
+}
+
+/* --- Footer Section --- */
+.site-footer {
+    padding: 60px 10%;
+    /* Ένα απαλό, ημιδιάφανο περίγραμμα στο πάνω μέρος για να το ξεχωρίζει */
+    border-top: 1px solid var(--glass-border); 
+    background-color: transparent; /* Διάφανο για να φαίνεται το watermark λογότυπο */
+    position: relative;
+    z-index: 1;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+}
+
+.copyright-text, .created-by {
+    color: #a0a5b5; /* Απαλό γκρι για να μην "φωνάζει" */
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+}
+
+.brand-text {
+    color: var(--accent-color); /* Το όνομα με το χρυσό της παλέτας */
+    font-weight: 700;
+}
+
+/* Κυκλικά Εικονίδια */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(211, 179, 128, 0.4); /* Ημιδιάφανο χρυσό περίγραμμα */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent-color); /* Χρυσό εικονίδιο */
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.social-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+/* Hover Effect στα Εικονίδια */
+.social-icon:hover {
+    background-color: var(--accent-color); /* Το εσωτερικό γίνεται χρυσό */
+    color: var(--bg-color); /* Το εικονίδιο γίνεται σκούρο μπλε */
+    transform: translateY(-5px); /* Ανασηκώνεται ελαφρώς */
+    box-shadow: 0 10px 20px rgba(211, 179, 128, 0.15); /* Απαλή χρυσή σκιά */
+}
+
+/* --- Responsive Ρυθμίσεις για Κινητά (Mobile) --- */
+@media (max-width: 768px) {
+    /* Εξαφανίζει τα links του μενού (Work, Skills, Contact) */
+    .nav-links {
+        display: none;
+    }
+    
+    /* Προαιρετικά: Κεντράρει το λογότυπο αφού φύγουν τα links για πιο ωραία συμμετρία */
+    .glass-nav {
+        justify-content: center;
+    }
+}
