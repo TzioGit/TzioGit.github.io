@@ -724,3 +724,51 @@ html, body {
         box-sizing: border-box;
     }
 }
+
+/* =========================================================
+   OPTIMIZATIONS ΓΙΑ ΑΠΟΛΥΤΑ ΟΜΑΛΟ SCROLL (60FPS+)
+   ========================================================= */
+
+/* 1. Ενεργοποίηση Hardware Acceleration (GPU) στα "βαριά" στοιχεία */
+.glass-nav, 
+.project-card, 
+.service-card, 
+.faq-item,
+.modal-content,
+.bg-visuals,
+.cube,
+.shape {
+    /* Αναγκάζει τον browser να δημιουργήσει ξεχωριστό layer για το καθένα στην Κάρτα Γραφικών */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    
+    /* Αποτρέπει "σπασίματα" γραφικών κατά το scroll */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+    /* Εξομαλύνει τις άκρες στο animation */
+    perspective: 1000px;
+}
+
+/* 2. Προειδοποίηση του Browser για τα στοιχεία που έχουν Animations ή Hover effects */
+.cube {
+    will-change: transform, border-radius;
+}
+
+.project-card, 
+.service-card, 
+.faq-item {
+    will-change: transform, border-color, box-shadow;
+}
+
+/* 3. Αποτροπή υπολογισμού των θολωμάτων (blur) στα στοιχεία που δεν φαίνονται */
+.project-grid, 
+.services-grid, 
+.faq-accordion {
+    content-visibility: auto;
+}
+
+/* 4. Προαιρετικό: Ομαλό Scroll (Smooth Scrolling) για τα links του μενού */
+html {
+    scroll-behavior: smooth;
+}
